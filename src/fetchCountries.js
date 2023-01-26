@@ -1,15 +1,10 @@
 export default function fetchCountries (name) {
-   const url = `https://restcountries.com/v3.1/name/${name}?fields=name,capital,population,flags,languages`;
-
-   return  fetch(url)
-    .then(response => {
+  return fetch(`https://restcountries.com/v3.1/name/${name}?fields=name,capital,population,flags,languages`)
+  .then(response => {
+      if (!response.ok) {
+         throw new Error('Упс', response.status);
+      }
+    
         return response.json();
      })
-     .then(country =>{
-       console.log(country);
-     })
-     .catch(error => {
-        console.log(error);
-     })
-    
-}
+   }
