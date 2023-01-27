@@ -50,15 +50,17 @@ function createCard(country) {
         if (country.length === 1) {
             const cardInfo = country.map(({flags, name,capital,population,languages}) => {
             return `
-            <li><img src = ${flags.svg} alt = "Country flag" width = 100><h1>${name.official}</h1><p>${capital}</p><p>${population}</p><p>${languages}</p></li>`;
+            <img src = ${flags.svg} alt = "Country flag" width = 100><h1>${name.official}</h1><p>Capital: ${capital}</p><p>Populatin: ${population}</p><p>Languages: ${Object.values(languages).join(',')}</p>`;
         }).join('');
+        console.log(cardInfo);
         countryInfo.innerHTML = cardInfo;
-        inputEl.innerHTML = '';
+        countryList.innerHTML = '';
     }
 
-    function clearForm() {
-        inputEl.innerHTML = '';
-        countryInfo.innerHTML = '';
-    }
 }
+function clearForm() {
+    countryList.innerHTML = '';
+    countryInfo.innerHTML = '';
+}
+
         
