@@ -3,6 +3,7 @@ export default function fetchCountries (name) {
   .then(response => {
       if (!response.ok) {
          throw new Error('Упс', response.status);
+         
       }
     
         return response.json();

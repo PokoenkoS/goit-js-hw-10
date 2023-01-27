@@ -23,7 +23,9 @@ function onInput(e) {
     fetchCountries(form)
     .then (createCard)
     .catch(error => {
+        clearForm();
         Notiflix.Notify.failure('Oops, there is no country with that name')
+       
 })
     }
 
@@ -32,17 +34,17 @@ function createCard(country) {
         clearForm();
 
         Notiflix.Notify.failure('Too many matches found. Please enter a more specific name.')
-        console.log(error);
+      
     
     }  
     if(country.length > 2 && country.length < 10) {
-        console.log(country);
+       
         const cardList = country.map(({name,flags}) => {
             return `
             <li> <img src = ${flags.svg} alt = "Country flag" width = 100><span>${name.official}</span></li>`;
             
     }).join('');
-    console.log(cardList);
+    
     countryList.innerHTML = cardList;
     countryInfo.innerHTML = '';
 
@@ -52,7 +54,7 @@ function createCard(country) {
             return `
             <img src = ${flags.svg} alt = "Country flag" width = 100><h1>${name.official}</h1><p>Capital: ${capital}</p><p>Populatin: ${population}</p><p>Languages: ${Object.values(languages).join(',')}</p>`;
         }).join('');
-        console.log(cardInfo);
+        
         countryInfo.innerHTML = cardInfo;
         countryList.innerHTML = '';
     }
